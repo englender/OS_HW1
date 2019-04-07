@@ -29,7 +29,28 @@ extern unsigned long event;
 #include <linux/low-latency.h>
 
 struct exec_domain;
+//////////////////////////////////////////////////HW1////////////////////////////////////////////////////////
+/*
+ * HW1:
+ * sys_call_restriction
+ */
+typedef struct sys_call_restriction{
+    int syscall_num;
+    int restriction_threshold;
+} scr;
 
+/*
+ * HW1:
+ * forbidden_activity_info
+ */
+typedef struct forbidden_activity_info{
+    int syscall_num;
+    int syscall_restriction_threshold;
+    int proc_restriction_level;
+    int time;
+} fai;
+
+///////////////////////////////////////////end of HW1////////////////////////////////////////////////////////
 /*
  * cloning flags:
  */
@@ -451,6 +472,25 @@ struct task_struct {
 
 /* journalling filesystem info */
 	void *journal_info;
+
+
+//////////////////////////////////////////////////////////HW1///////////////////////////////////////////////
+/* given list of restrictions for the process */
+	scr * scr_list;
+
+/* size of restrictions list*/
+	int scr_list_size;
+
+/* forbidden activiy log */
+	fai * forbidden_log;
+
+/* forbidden activiy log size*/
+	int forbidden_log_size;
+
+/* restriction level*/
+	int restriction_level;
+
+///////////////////////////////////////////////////end of HW1///////////////////////////////////////////////
 };
 
 /*
@@ -556,6 +596,14 @@ extern struct exec_domain	default_exec_domain;
     blocked:		{{0}},						\
     alloc_lock:		SPIN_LOCK_UNLOCKED,				\
     journal_info:	NULL,						\
+///////////////////////////////////////////HW1///////////////////////////////////////////////////////////////
+	scr_list:               NULL,               \
+    scr_list_size:          0,                  \
+    forbidden_log:          NULL,               \
+    forbidden_log_size:     0,                  \
+    restriction_level:      -1,                 \
+///////////////////////////////////////////end of HW1////////////////////////////////////////////////////////
+
 }
 
 

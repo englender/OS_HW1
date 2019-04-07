@@ -650,7 +650,10 @@ ENTRY(sys_call_table)
 	.long SYMBOL_NAME(sys_sched_setaffinity)
 	.long SYMBOL_NAME(sys_sched_getaffinity)
 
-	.long SYMBOL_NAME(sys_impress) /*234*/
+    .long SYMBOL_NAME(sys_sc_restrict)      /*243 - HW1*/
+    .long SYMBOL_NAME(sys_proc_restriction) /*244 - HW1*/
+    .long SYMBOL_NAME(sys_get_process_log)  /*245 - HW1*/
+
 
 	.rept NR_syscalls-(.-sys_call_table)/4
 		.long SYMBOL_NAME(sys_ni_syscall)
