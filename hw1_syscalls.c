@@ -5,7 +5,7 @@
 #include "hw1_syscalls.h"
 
 
-#define
+#define LOGSIZE 100
 
 int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_list,
                  int list_size){
@@ -35,6 +35,10 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         kfree(p->scr_list);
         return -ENOMEM;
     }
+
+    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE);
+    if(p->forbidden_log==NULL)
+        return -ENOMEM;
 
     p->restriction_level=proc_restriction_level;
     p->scr_list_size=list_size;
