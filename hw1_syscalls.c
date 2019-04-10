@@ -5,8 +5,6 @@
 #include "hw1_syscalls.h"
 
 
-#define
-
 int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_list,
                  int list_size){
     if(pid<0){
