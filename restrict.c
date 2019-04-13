@@ -1,7 +1,7 @@
 //
 // Created by ronien on 08/04/2019.
 //
-
+#include <linux/sched.h>
 #include <linux/jiffies.h>              //should it be here??
 
 int sys_restrict(int sys_num){

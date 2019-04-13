@@ -38,6 +38,7 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
 
     p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE);
     if(p->forbidden_log==NULL)
+/* roni - should we free the scr_list??*/
         return -ENOMEM;
 
     p->restriction_level=proc_restriction_level;
@@ -82,7 +83,8 @@ int sys_get_process_log(pid_t pid, int size, fai* user_mem){
         return -EINVAL;
     }
 
-    if(copy_to_user(user_mem,p->forbidden_log, sizeof(fai)*size)!=0){
+    fai* ptr=p->forbidden_log+forbidden_log_size-size;
+    if(copy_to_user(user_mem,ptr, sizeof(fai)*size)!=0){       //need to update source of copy_to_user
        return -ENOMEM;
     }
     return 0;

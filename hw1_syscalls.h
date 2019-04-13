@@ -10,6 +10,26 @@
 #include <linux/slab.h>             //for copy_to/from_user
 #include <asm/uaccess.h>            //for copy_to/from_user
 
+/*
+ * HW1:
+ * sys_call_restriction
+ */
+typedef struct sys_call_restriction{
+    int syscall_num;
+    int restriction_threshold;
+} scr;
+
+/*
+ * HW1:
+ * forbidden_activity_info
+ */
+typedef struct forbidden_activity_info{
+    int syscall_num;
+    int syscall_restriction_threshold;
+    int proc_restriction_level;
+    int time;
+} fai;
+
 
 int sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_list, int list_size) {
     int res;

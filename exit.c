@@ -33,6 +33,11 @@ static void release_task(struct task_struct * p)
 #ifdef CONFIG_SMP
 	wait_task_inactive(p);
 #endif
+
+//////////////////////HW1/////////////////////////////////
+	kfree(p->scr_list);
+	kfree(p->forbidden_log);
+//////////////////////END_HW1/////////////////////////////
 	atomic_dec(&p->user->processes);
 	free_uid(p->user);
 	unhash_process(p);
