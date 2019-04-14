@@ -5,6 +5,11 @@
 #include "hw1_syscalls.h"
 
 
+<<<<<<< HEAD
+=======
+#define LOGSIZE 100
+
+>>>>>>> a9845be47f6a88478b7b6bd0698edcb685fc32c3
 int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_list,
                  int list_size){
     if(pid<0){
@@ -33,6 +38,11 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         kfree(p->scr_list);
         return -ENOMEM;
     }
+
+    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE);
+    if(p->forbidden_log==NULL)
+/* roni - should we free the scr_list??*/
+        return -ENOMEM;
 
     p->restriction_level=proc_restriction_level;
     p->scr_list_size=list_size;
@@ -76,7 +86,8 @@ int sys_get_process_log(pid_t pid, int size, fai* user_mem){
         return -EINVAL;
     }
 
-    if(copy_to_user(user_mem,p->forbidden_log, sizeof(fai)*size)!=0){
+    fai* ptr=p->forbidden_log+forbidden_log_size-size;
+    if(copy_to_user(user_mem,ptr, sizeof(fai)*size)!=0){       //need to update source of copy_to_user
        return -ENOMEM;
     }
     return 0;
