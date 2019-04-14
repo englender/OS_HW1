@@ -619,7 +619,7 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 ///////////////////////////////HW1//////////////////////////////
 
 	kfree(p->scr_list);
-	kfree(p->firbidden_log);
+	kfree(p->forbidden_log);
 	p->scr_list = NULL;		//just in case
 	p->scr_list_size = 0;
 	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it

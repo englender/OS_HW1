@@ -206,12 +206,22 @@ ENTRY(system_call)
     pushl %edx
     pushl %ecx
     pushl %eax
-    call *SYMBOL_NAME(restrict)
+	pushl %eax
+    call SYMBOL_NAME(sys_restrict)
     cmpl 0, %eax            #if res=0 then syscall is not restricted
-    jne badsys               #jump if syscall is restricted
+    jne hw1bads				#jump if syscall is restricted
     popl %eax
+	popl %eax
     popl %ecx
     popl %edx
+	jmp hw1goods
+hw1bads:
+	popl %eax
+	popl %eax
+    popl %ecx
+    popl %edx
+	jmp badsys
+hw1goods:
 /////////////////////////HW1 END///////////////////////////////////////
 	call *SYMBOL_NAME(sys_call_table)(,%eax,4)
 	movl %eax,EAX(%esp)		# save the return value
@@ -663,7 +673,7 @@ ENTRY(sys_call_table)
 	.long SYMBOL_NAME(sys_sched_getaffinity)
 
     .long SYMBOL_NAME(sys_sc_restrict)      /*243 - HW1*/
-    .long SYMBOL_NAME(sys_proc_restriction) /*244 - HW1*/
+    .long SYMBOL_NAME(sys_set_proc_restriction) /*244 - HW1*/
     .long SYMBOL_NAME(sys_get_process_log)  /*245 - HW1*/
 
 

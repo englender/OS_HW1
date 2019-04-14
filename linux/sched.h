@@ -596,14 +596,11 @@ extern struct exec_domain	default_exec_domain;
     blocked:		{{0}},						\
     alloc_lock:		SPIN_LOCK_UNLOCKED,				\
     journal_info:	NULL,						\
-///////////////////////////////////////////HW1///////////////////////////////////////////////////////////////
-	scr_list:               NULL,               \
+    scr_list:               NULL,               \
     scr_list_size:          0,                  \
     forbidden_log:          NULL,               \
     forbidden_log_size:     0,                  \
     restriction_level:      -1,                 \
-///////////////////////////////////////////end of HW1////////////////////////////////////////////////////////
-
 }
 
 

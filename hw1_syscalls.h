@@ -8,7 +8,6 @@
 #include <linux/errno.h>
 #include <linux/slab.h>             //for copy_to/from_user
 #include <asm/uaccess.h>            //for copy_to/from_user
-#include "/usr/src/linux.2.4.18-14custom/kernel/hw1_syscalls.c"
 
 /*
  * HW1:
