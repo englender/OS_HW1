@@ -2,8 +2,10 @@
 // Created by Dell on 4/7/2019.
 //
 
-#include "hw1_syscalls.h"
-
+//#include "/root/hw1_syscalls.h"
+#include <linux/sched.h>
+#include <linux/slab.h>
+#include <asm/uaccess.h>
 
 #define LOGSIZE 100
 
@@ -27,7 +29,7 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         kfree(p->scr_list);
     }
 
-    p->scr_list=kmalloc(sizeof(scr)*list_size);
+    p->scr_list=kmalloc(sizeof(scr)*list_size, GFP_KERNEL);
     if(p->scr_list==NULL)
         return -ENOMEM;
 
@@ -36,7 +38,7 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         return -ENOMEM;
     }
 
-    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE);
+    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
     if(p->forbidden_log==NULL)
 /* roni - should we free the scr_list??*/
         return -ENOMEM;
@@ -83,7 +85,7 @@ int sys_get_process_log(pid_t pid, int size, fai* user_mem){
         return -EINVAL;
     }
 
-    fai* ptr=p->forbidden_log+forbidden_log_size-size;
+    fai* ptr=p->forbidden_log+p->forbidden_log_size-size;
     if(copy_to_user(user_mem,ptr, sizeof(fai)*size)!=0){       //need to update source of copy_to_user
        return -ENOMEM;
     }
