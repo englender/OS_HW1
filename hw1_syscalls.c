@@ -5,11 +5,8 @@
 #include "hw1_syscalls.h"
 
 
-<<<<<<< HEAD
-=======
 #define LOGSIZE 100
 
->>>>>>> a9845be47f6a88478b7b6bd0698edcb685fc32c3
 int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_list,
                  int list_size){
     if(pid<0){
