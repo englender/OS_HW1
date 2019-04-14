@@ -615,6 +615,18 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 	p->tux_info = NULL;
 	p->cpus_allowed_mask &= p->cpus_allowed;
 
+/*find place for these init code */
+///////////////////////////////HW1//////////////////////////////
+
+	kfree(p->scr_list);
+	kfree(p->firbidden_log);
+	p->scr_list = NULL;		//just in case
+	p->scr_list_size = 0;
+	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
+	p->restriction_level = -1;
+
+///////////////////////////END_HW1//////////////////////////////
+
 	retval = -EAGAIN;
 	/*
 	 * Check if we are over our maximum process limit, but be sure to
@@ -784,6 +796,7 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 		 * COW overhead when the child exec()s afterwards.
 		 */
 		current->need_resched = 1;
+
 
 fork_out:
 	return retval;

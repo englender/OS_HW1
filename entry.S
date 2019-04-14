@@ -201,6 +201,18 @@ ENTRY(system_call)
 	jne tracesys
 	cmpl $(NR_syscalls),%eax
 	jae badsys
+
+/////////////////////////////HW1////////////////////////////////////////
+    pushl %edx
+    pushl %ecx
+    pushl %eax
+    call *SYMBOL_NAME(restrict)
+    cmpl 0, %eax            #if res=0 then syscall is not restricted
+    jne badsys               #jump if syscall is restricted
+    popl %eax
+    popl %ecx
+    popl %edx
+/////////////////////////HW1 END///////////////////////////////////////
 	call *SYMBOL_NAME(sys_call_table)(,%eax,4)
 	movl %eax,EAX(%esp)		# save the return value
 ENTRY(ret_from_sys_call)
