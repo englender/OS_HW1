@@ -208,7 +208,7 @@ ENTRY(system_call)
     pushl %eax
     call *SYMBOL_NAME(restrict)
     cmpl 0, %eax            #if res=0 then syscall is not restricted
-    jne xxxxx               #jump if syscall is restricted
+    jne badsys               #jump if syscall is restricted
     popl %eax
     popl %ecx
     popl %edx
