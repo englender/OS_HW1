@@ -617,6 +617,7 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 	p->tux_info = NULL;
 	p->cpus_allowed_mask &= p->cpus_allowed;
 
+
 	retval = -EAGAIN;
 	/*
 	 * Check if we are over our maximum process limit, but be sure to
@@ -717,14 +718,16 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 	p->scr_list_size = 0;
 	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
 	p->restriction_level = -1;
-    
-	p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
+	
+	
+    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
     if(p->forbidden_log==NULL){
 	/* roni - should we free the scr_list??*/
         return -ENOMEM;
 	}
 ///////////////////////////END_HW1//////////////////////////////
 
+	
 	/* Our parent execution domain becomes current domain
 	   These must match for thread signalling to apply */
 	   

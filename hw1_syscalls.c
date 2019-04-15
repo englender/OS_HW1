@@ -37,9 +37,7 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         kfree(p->scr_list);
         return -ENOMEM;
     }
-
 	//kmalloc used to be here
-	
     p->restriction_level=proc_restriction_level;
     p->scr_list_size=list_size;
     return 0;
