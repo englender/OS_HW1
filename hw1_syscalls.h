@@ -7,7 +7,6 @@
 
 #include <linux/errno.h>
 #include <linux/slab.h>             //for copy_to/from_user
-#include <asm/uaccess.h>            //for copy_to/from_user
 
 /*
  * HW1:
