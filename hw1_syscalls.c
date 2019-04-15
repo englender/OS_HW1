@@ -38,11 +38,8 @@ int sys_sc_restrict (pid_t pid ,int proc_restriction_level, scr* restrictions_li
         return -ENOMEM;
     }
 
-    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
-    if(p->forbidden_log==NULL)
-/* roni - should we free the scr_list??*/
-        return -ENOMEM;
-
+	//kmalloc used to be here
+	
     p->restriction_level=proc_restriction_level;
     p->scr_list_size=list_size;
     return 0;

@@ -29,6 +29,8 @@
 #include <asm/uaccess.h>
 #include <asm/mmu_context.h>
 
+#define LOGSIZE 100
+
 /* The idle threads do not count.. */
 int nr_threads;
 
@@ -615,18 +617,6 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 	p->tux_info = NULL;
 	p->cpus_allowed_mask &= p->cpus_allowed;
 
-/*find place for these init code */
-///////////////////////////////HW1//////////////////////////////
-
-	kfree(p->scr_list);
-	kfree(p->forbidden_log);
-	p->scr_list = NULL;		//just in case
-	p->scr_list_size = 0;
-	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
-	p->restriction_level = -1;
-
-///////////////////////////END_HW1//////////////////////////////
-
 	retval = -EAGAIN;
 	/*
 	 * Check if we are over our maximum process limit, but be sure to
@@ -717,7 +707,24 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 	if (retval)
 		goto bad_fork_cleanup_namespace;
 	p->semundo = NULL;
-	
+
+/*find place for these init code */
+///////////////////////////////HW1//////////////////////////////
+
+	kfree(p->scr_list);
+	kfree(p->forbidden_log);
+	p->scr_list = NULL;		//just in case
+	p->scr_list_size = 0;
+	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
+	p->restriction_level = -1;
+    
+	p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
+    if(p->forbidden_log==NULL){
+	/* roni - should we free the scr_list??*/
+        return -ENOMEM;
+	}
+///////////////////////////END_HW1//////////////////////////////
+
 	/* Our parent execution domain becomes current domain
 	   These must match for thread signalling to apply */
 	   
