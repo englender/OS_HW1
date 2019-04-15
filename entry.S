@@ -203,12 +203,13 @@ ENTRY(system_call)
 	jae badsys
 
 /////////////////////////////HW1////////////////////////////////////////
+
     pushl %edx
     pushl %ecx
     pushl %eax
 	pushl %eax
-    call SYMBOL_NAME(sys_restrict)
-    cmpl 0, %eax            #if res=0 then syscall is not restricted
+    call sys_restrict
+    cmpl $0, %eax            #if res=0 then syscall is not restricted
     jne hw1bads				#jump if syscall is restricted
     popl %eax
 	popl %eax
@@ -222,6 +223,7 @@ hw1bads:
     popl %edx
 	jmp badsys
 hw1goods:
+
 /////////////////////////HW1 END///////////////////////////////////////
 	call *SYMBOL_NAME(sys_call_table)(,%eax,4)
 	movl %eax,EAX(%esp)		# save the return value
