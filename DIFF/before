@@ -1,4 +1,4 @@
-Linux version 2.4.18-14custom (root@localhost.localdomain) (gcc version 3.2 20020903 (Red Hat Linux 8.0 3.2-7)) #14 Mon Apr 15 14:59:48 IDT 2019
+Linux version 2.4.18-14custom (root@localhost.localdomain) (gcc version 3.2 20020903 (Red Hat Linux 8.0 3.2-7)) #1 Thu Oct 23 07:21:03 IST 2003
 BIOS-provided physical RAM map:
  BIOS-e820: 0000000000000000 - 000000000009f800 (usable)
  BIOS-e820: 000000000009f800 - 00000000000a0000 (reserved)
@@ -19,10 +19,10 @@ zone(1): 61440 pages.
 zone(2): 0 pages.
 Kernel command line: ro root=LABEL=/ console=tty0 console=ttyS1
 Initializing CPU#0
-Detected 2000.689 MHz processor.
+Detected 2710.868 MHz processor.
 Console: colour VGA+ 80x25
-Calibrating delay loop... 3970.35 BogoMIPS
-Memory: 252948k/262144k available (1298k kernel code, 6632k reserved, 956k data, 172k init, 0k highmem)
+Calibrating delay loop... 5220.58 BogoMIPS
+Memory: 252948k/262144k available (1297k kernel code, 6632k reserved, 955k data, 172k init, 0k highmem)
 Dentry cache hash table entries: 32768 (order: 6, 262144 bytes)
 Inode cache hash table entries: 16384 (order: 5, 131072 bytes)
 Mount cache hash table entries: 4096 (order: 3, 32768 bytes)
@@ -36,7 +36,7 @@ Intel machine check architecture supported.
 Intel machine check reporting enabled on CPU#0.
 CPU:     After generic, caps: 0f8bfbff 2c100000 00000000 00000000
 CPU:             Common caps: 0f8bfbff 2c100000 00000000 00000000
-CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz stepping 0a
+CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz stepping 09
 Enabling fast FPU save and restore... done.
 Enabling unmasked SIMD FPU exception support... done.
 Checking 'hlt' instruction... OK.
@@ -167,17 +167,17 @@ usb.c: registered new driver hid
 hid-core.c: v1.8.1 Andreas Gal, Vojtech Pavlik <vojtech@suse.cz>
 hid-core.c: USB HID support drivers
 mice: PS/2 mouse device common for all mice
-EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,2), internal journal
-Adding Swap: 321292k swap-space (priority -1)
 hub.c: USB new device connect on bus1/1, assigned device number 2
 hiddev0: USB HID v1.10 Mouse [VMware VMware Virtual USB Mouse] on usb1:2.0
 hiddev0: USB HID v1.10 Mouse [VMware VMware Virtual USB Mouse] on usb1:2.1
-kjournald starting.  Commit interval 5 seconds
-EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,1), internal journal
-EXT3-fs: mounted filesystem with ordered data mode.
+EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,2), internal journal
+Adding Swap: 321292k swap-space (priority -1)
 hub.c: USB new device connect on bus1/2, assigned device number 3
 hub.c: USB hub found
 hub.c: 7 ports detected
+kjournald starting.  Commit interval 5 seconds
+EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,1), internal journal
+EXT3-fs: mounted filesystem with ordered data mode.
 parport0: PC-style at 0x378 [PCSPP,TRISTATE]
 ohci1394: pci_module_init failed
 ide-floppy driver 0.99.newide
@@ -185,7 +185,7 @@ hdc: ATAPI 1X DVD-ROM DVD-R-RAM CD-R/RW drive, 32kB Cache
 Uniform CD-ROM driver Revision: 3.12
 ip_tables: (C) 2000-2002 Netfilter core team
 pcnet32.c:v1.27a 10.02.2002 tsbogend@alpha.franken.de
-pcnet32: PCnet/PCI II 79C970A at 0x2000, 00 0c 29 30 6b 1d assigned IRQ 5.
+pcnet32: PCnet/PCI II 79C970A at 0x2000, 00 0c 29 2d 21 b7 assigned IRQ 5.
 divert: allocating divert_blk for eth0
 eth0: registered as PCnet/PCI II 79C970A
 pcnet32: 1 cards_found.

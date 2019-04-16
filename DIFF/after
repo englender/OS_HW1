@@ -1,4 +1,4 @@
-Linux version 2.4.18-14custom (root@localhost.localdomain) (gcc version 3.2 20020903 (Red Hat Linux 8.0 3.2-7)) #14 Mon Apr 15 16:32:48 IDT 2019
+Linux version 2.4.18-14custom (root@localhost.localdomain) (gcc version 3.2 20020903 (Red Hat Linux 8.0 3.2-7)) #2 Tue Apr 16 18:46:30 IDT 2019
 BIOS-provided physical RAM map:
  BIOS-e820: 0000000000000000 - 000000000009f800 (usable)
  BIOS-e820: 000000000009f800 - 00000000000a0000 (reserved)
@@ -19,9 +19,9 @@ zone(1): 61440 pages.
 zone(2): 0 pages.
 Kernel command line: ro root=LABEL=/ console=tty0 console=ttyS1
 Initializing CPU#0
-Detected 1999.619 MHz processor.
+Detected 2716.901 MHz processor.
 Console: colour VGA+ 80x25
-Calibrating delay loop... 3986.55 BogoMIPS
+Calibrating delay loop... 5220.58 BogoMIPS
 Memory: 252948k/262144k available (1298k kernel code, 6632k reserved, 956k data, 172k init, 0k highmem)
 Dentry cache hash table entries: 32768 (order: 6, 262144 bytes)
 Inode cache hash table entries: 16384 (order: 5, 131072 bytes)
@@ -36,7 +36,7 @@ Intel machine check architecture supported.
 Intel machine check reporting enabled on CPU#0.
 CPU:     After generic, caps: 0f8bfbff 2c100000 00000000 00000000
 CPU:             Common caps: 0f8bfbff 2c100000 00000000 00000000
-CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz stepping 0a
+CPU: Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz stepping 09
 Enabling fast FPU save and restore... done.
 Enabling unmasked SIMD FPU exception support... done.
 Checking 'hlt' instruction... OK.
@@ -143,18 +143,10 @@ SCSI device sda: 8388608 512-byte hdwr sectors (4295 MB)
 Partition check:
  sda: sda1 sda2 sda3
 Journalled Block Device driver loaded
-EXT3-fs: INFO: recovery required on readonly filesystem.
-EXT3-fs: write access will be enabled during recovery.
-scsi0: Tagged Queuing now active for Target 0
 kjournald starting.  Commit interval 5 seconds
-EXT3-fs: sd(8,2): orphan cleanup on readonly fs
-ext3_orphan_cleanup: deleting unreferenced inode 212593
-ext3_orphan_cleanup: deleting unreferenced inode 212591
-ext3_orphan_cleanup: deleting unreferenced inode 212590
-EXT3-fs: sd(8,2): 3 orphan inodes deleted
-EXT3-fs: recovery complete.
 EXT3-fs: mounted filesystem with ordered data mode.
 Freeing unused kernel memory: 172k freed
+scsi0: Tagged Queuing now active for Target 0
 usb.c: registered new driver usbdevfs
 usb.c: registered new driver hub
 usb-uhci.c: $Revision: 1.275 $ time 07:47:23 Oct 23 2003
@@ -166,7 +158,7 @@ hub.c: USB hub found
 hub.c: 2 ports detected
 usb-uhci.c: v1.275:USB Universal Host Controller Interface driver
 hcd.c: ehci-hcd @ 02:03.0, PCI device 15ad:0770 (VMWare Inc)
-hcd.c: irq 11, pci mem d088d000
+hcd.c: irq 11, pci mem d089e000
 usb.c: new USB bus registered, assigned bus number 2
 ehci-hcd.c: USB 2.0 support enabled, EHCI rev 1. 0
 hub.c: USB hub found
@@ -177,12 +169,12 @@ hid-core.c: USB HID support drivers
 mice: PS/2 mouse device common for all mice
 hub.c: USB new device connect on bus1/1, assigned device number 2
 hiddev0: USB HID v1.10 Mouse [VMware VMware Virtual USB Mouse] on usb1:2.0
+EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,2), internal journal
 hiddev0: USB HID v1.10 Mouse [VMware VMware Virtual USB Mouse] on usb1:2.1
+Adding Swap: 321292k swap-space (priority -1)
 hub.c: USB new device connect on bus1/2, assigned device number 3
 hub.c: USB hub found
 hub.c: 7 ports detected
-EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,2), internal journal
-Adding Swap: 321292k swap-space (priority -1)
 kjournald starting.  Commit interval 5 seconds
 EXT3 FS 2.4-0.9.18, 14 May 2002 on sd(8,1), internal journal
 EXT3-fs: mounted filesystem with ordered data mode.
@@ -193,35 +185,9 @@ hdc: ATAPI 1X DVD-ROM DVD-R-RAM CD-R/RW drive, 32kB Cache
 Uniform CD-ROM driver Revision: 3.12
 ip_tables: (C) 2000-2002 Netfilter core team
 pcnet32.c:v1.27a 10.02.2002 tsbogend@alpha.franken.de
-pcnet32: PCnet/PCI II 79C970A at 0x2000, 00 0c 29 6e c9 24 assigned IRQ 5.
+pcnet32: PCnet/PCI II 79C970A at 0x2000, 00 0c 29 2d 21 b7 assigned IRQ 5.
 divert: allocating divert_blk for eth0
 eth0: registered as PCnet/PCI II 79C970A
 pcnet32: 1 cards_found.
 mtrr: type mismatch for e8000000,8000000 old: uncachable new: write-combining
 cdrom: This disc doesn't have any tracks I recognize!
-Unable to handle kernel NULL pointer dereference at virtual address 00000400
- printing eip:
-c01505c0
-*pde = 00000000
-Oops: 0000
-soundcore autofs pcnet32 mii iptable_filter ip_tables ide-cd cdrom vmhgfs mous
-CPU:    0
-EIP:    0010:[<c01505c0>]    Tainted: PF
-EFLAGS: 00013293
-
-EIP is at do_pollfd [kernel] 0x20 (2.4.18-14custom)
-eax: cbe59f60   ebx: 00000000   ecx: cbe59f1c   edx: c9bcf660
-esi: 00000400   edi: 00000000   ebp: 00000000   esp: cbe59f2c
-ds: 0018   es: 0018   ss: 0018
-Process gconfd-2 (pid: 1015, stackpage=cbe59000)
-Stack: c0123c90 cbe59fa8 00000000 08263378 00000000 00000000 c015073f 0000000f 
-       00000400 cbe59f64 cbe59f60 cbe58000 cbe58000 00000000 00000000 0000f001 
-       08263378 00000000 0000000f c01508b3 0000000f 00000000 0000000f c9bcf660 
-Call Trace: [<c0123c90>] process_timeout [kernel] 0x0 (0xcbe59f2c))
-[<c015073f>] do_pollfd [kernel] 0x19f (0xcbe59f44))
-[<c01508b3>] sys_poll [kernel] 0x163 (0xcbe59f78))
-[<c010912c>] hw1goods [kernel] 0x7 (0xcbe59fc0))
-
-
-Code: 8b 06 31 db 85 c0 78 47 e8 03 0a ff ff 85 c0 89 c7 bb 20 00 
- 
