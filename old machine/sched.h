@@ -482,7 +482,7 @@ struct task_struct {
 	int scr_list_size;
 
 /* forbidden activiy log */
-	fai forbidden_log[100];
+	fai * forbidden_log;
 
 /* forbidden activiy log size*/
 	int forbidden_log_size;
@@ -598,6 +598,7 @@ extern struct exec_domain	default_exec_domain;
     journal_info:	NULL,						\
     scr_list:               NULL,               \
     scr_list_size:          0,                  \
+    forbidden_log:          NULL,               \
     forbidden_log_size:     0,                  \
     restriction_level:      -1,                 \
 }

@@ -614,29 +614,6 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 		goto fork_out;
 
 	*p = *current;
-
-/*find place for these init code */
-///////////////////////////////HW1//////////////////////////////
-	if(p->scr_list!=NULL){
-		kfree(p->scr_list);
-	}
-//	if(p->forbidden_log!=NULL){
-//	kfree(p->forbidden_log);
-//	}
-	p->scr_list = NULL;		//just in case
-	p->scr_list_size = 0;
-	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
-	p->restriction_level = -1;
-	
-	
-//    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
-//    if(p->forbidden_log==NULL){
-//	/* roni - should we free the scr_list??*/
-//        return -ENOMEM;
-//	}
-///////////////////////////END_HW1//////////////////////////////
-
-
 	p->tux_info = NULL;
 	p->cpus_allowed_mask &= p->cpus_allowed;
 
@@ -732,6 +709,23 @@ int do_fork(unsigned long clone_flags, unsigned long stack_start,
 		goto bad_fork_cleanup_namespace;
 	p->semundo = NULL;
 
+/*find place for these init code */
+///////////////////////////////HW1//////////////////////////////
+
+	kfree(p->scr_list);
+	kfree(p->forbidden_log);
+	p->scr_list = NULL;		//just in case
+	p->scr_list_size = 0;
+	p->forbidden_log_size = 0;		//if we decide to allocate the forbidden log we need to free it
+	p->restriction_level = -1;
+	
+	
+    p->forbidden_log=kmalloc(sizeof(fai)*LOGSIZE, GFP_KERNEL);
+    if(p->forbidden_log==NULL){
+	/* roni - should we free the scr_list??*/
+        return -ENOMEM;
+	}
+///////////////////////////END_HW1//////////////////////////////
 
 	
 	/* Our parent execution domain becomes current domain

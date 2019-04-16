@@ -34,6 +34,10 @@ static void release_task(struct task_struct * p)
 	wait_task_inactive(p);
 #endif
 
+//////////////////////HW1/////////////////////////////////
+	kfree(p->scr_list);
+	kfree(p->forbidden_log);
+//////////////////////END_HW1/////////////////////////////
 	atomic_dec(&p->user->processes);
 	free_uid(p->user);
 	unhash_process(p);
@@ -42,12 +46,6 @@ static void release_task(struct task_struct * p)
 	current->cmin_flt += p->min_flt + p->cmin_flt;
 	current->cmaj_flt += p->maj_flt + p->cmaj_flt;
 	current->cnswap += p->nswap + p->cnswap;
-		
-//////////////////////HW1/////////////////////////////////
-	kfree(p->scr_list);
-//	kfree(p->forbidden_log);
-//////////////////////END_HW1/////////////////////////////
-	
 	sched_exit(p);
 	p->pid = 0;
 	free_task_struct(p);
